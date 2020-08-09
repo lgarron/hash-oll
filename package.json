@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx parcel src/index.html"
   },
   "author": "Lucas Garron <code@garron.net>",
   "license": "GPL-3.0-or-later",
