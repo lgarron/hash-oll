@@ -35,6 +35,41 @@ const cornerExtra = {
 };
 const edges = ["EDGE_START", "U", "FB", "RL", "FR", "RB", "BL", "FL", "D"];
 
+const canonicalizeIdx = [
+  [
+    [1, 3],
+    [1, 2],
+  ],
+  [
+    [1, 5],
+    [1, 4],
+  ],
+  [
+    [1, 6],
+    [1, 4],
+  ],
+  [
+    [1, 7],
+    [1, 4],
+  ],
+  [
+    [4, 8],
+    [4, 3],
+  ],
+  [
+    [4, 6],
+    [4, 4],
+  ],
+  [
+    [4, 7],
+    [4, 5],
+  ],
+];
+const canonicalize: Record<string, string> = {};
+for (const [[a, b], [c, d]] of canonicalizeIdx) {
+  canonicalize[corners[a] + edges[b]] = corners[c] + edges[d];
+}
+
 const table = document.createElement("table");
 document.body.appendChild(table);
 for (const corner of corners) {
@@ -72,6 +107,10 @@ for (const corner of corners) {
     if (edge === "EDGE_START" && corner === "CORNER_START") {
       td.innerHTML =
         "<span>OLL<br>Naming</span><span>Lucas<br>Garron</span><span>2020-08-08</span>";
+    }
+    console.log(canonicalize, name);
+    if (name in canonicalize) {
+      td.innerHTML = `same as<br>${canonicalize[name]}`;
     }
     tr.appendChild(td);
   }
