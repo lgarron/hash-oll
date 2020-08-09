@@ -25,7 +25,7 @@ const corners = ["CORNER_START", "O", "H", "S", "A", "V", "P", "C", "T"];
 const cornerExtra = {
   O: "(riented)",
   S: "(une)",
-  A: "(nti-sune)",
+  A: "(nti-Sune)",
   H: "",
   V: "",
   P: " (for pi)",
@@ -92,6 +92,7 @@ for (const corner of corners) {
     const td = document.createElement("td");
     let name = "";
     let alg: string[] = [];
+    let altName = "";
     if (corner !== "CORNER_START") {
       alg.push(a[corner]);
       if (edge !== "EDGE_START") {
@@ -101,6 +102,9 @@ for (const corner of corners) {
     }
     if (edge !== "EDGE_START") {
       alg.push(a[edge]);
+      if (edge.length === 2) {
+        altName = name + edge[1] + edge[0];
+      }
       name += edge;
     }
     if (edge === "EDGE_START") {
@@ -120,6 +124,12 @@ for (const corner of corners) {
     });
     td.append(document.createElement("br"));
     td.append(name);
+    if (altName) {
+      td.innerHTML += `<br><span class="alt">(or&nbsp;${altName})</span>`;
+    } else {
+      td.innerHTML += "<br>";
+    }
+
     if (edge === "EDGE_START" && corner === "CORNER_START") {
       td.innerHTML =
         "<span>#OLL<br>Naming v0.2</span><span>Lucas<br>Garron</span><span>2020-08-09</span>";
@@ -127,6 +137,10 @@ for (const corner of corners) {
     console.log(canonicalize, name);
     if (name in canonicalize) {
       td.innerHTML = `same as<br>${canonicalize[name]}<br><br> (${name})`;
+      if (altName) {
+        td.innerHTML += `<br><span class="alt">(or&nbsp;${altName})</span>`;
+      }
+      td.classList.add("alt-cell");
     }
     tr.appendChild(td);
   }

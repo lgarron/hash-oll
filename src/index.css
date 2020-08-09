@@ -37,17 +37,29 @@ tr:first-child td:first-child svg {
   opacity: 0;
 }
 
-tr:not(first-child) td:not(first-child) {
+td {
+  vertical-align: top;
+}
+
+table {
+  border: 2px solid black;
+}
+
+.alt {
+  opacity: 0.2;
+}
+
+.alt-cell {
   vertical-align: bottom;
+}
+
+tr:first-child td:first-child {
+  vertical-align: middle;
 }
 
 tr:first-child td:first-child span {
   font-size: 0.75em;
   display: block;
-  margin-bottom: -0.2em;
+  margin-bottom: 0em;
   padding: 0.25em;
-}
-
-table {
-  border: 2px solid black;
 }
