@@ -15,6 +15,19 @@ td {
   padding: 0.25em 0.7em;
 }
 
+tr:first-child td {
+  border-bottom: 2px solid black;
+}
+
+td:first-child {
+  border-right: 2px solid black;
+}
+
+td:nth-child(3),
+td:nth-child(5) {
+  border-right: 2px solid rgba(0, 0, 0, 0.5);
+}
+
 td:first-child,
 tr:first-child td {
   background: rgba(0, 0, 0, 0.15);
@@ -24,9 +37,17 @@ tr:first-child td:first-child svg {
   opacity: 0;
 }
 
+tr:not(first-child) td:not(first-child) {
+  vertical-align: bottom;
+}
+
 tr:first-child td:first-child span {
   font-size: 0.75em;
   display: block;
   margin-bottom: -0.2em;
   padding: 0.25em;
+}
+
+table {
+  border: 2px solid black;
 }

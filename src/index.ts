@@ -1,74 +1,87 @@
 import { cubeSVG, Face } from "sr-visualizer";
 
 const a = {
-  s: "R U2' R' U' R U' R'",
-  a: "R U R' U R U2 R'",
-  d: "R U2' R' U' R U R' U' R U' R'",
-  t: "R U2' R' U' R U R' U' R U R' U' R U' R'",
-  p: "B U2 B2 U' B2 U' B2 U2' B",
-  c: "L' U2' L U L' U L R U2 R' U' R U' R' U'",
-  h: "R U R' U R U2' R' L' U' L U' L' U2 L U'",
-  o: "",
+  S: "R U2' R' U' R U' R'",
+  A: "R U R' U R U2 R'",
+  H: "U R U2' R' U' R U R' U' R U' R' U'",
+  V: "R U2' R' U' R U R' U' R U R' U' R U' R'",
+  P: "B U2 B2 U' B2 U' B2 U2' B",
+  T: "U2 L' U2' L U L' U L R U2 R' U' R U' R' U' U2",
+  C: "U R U R' U R U2' R' L' U' L U' L' U2 L U' U'",
+  O: "",
   noedge: "M2 S2",
   nocenter: "M' E2 M",
-  U: "",
+  U: "U M' U' R' U' R U M2' U' R' U M' R",
   FB: "r U R' U' M U R U' R'",
   RL: "U' r U R' U' M U R U' R' U",
   FR: "R U R' U' M' U R U' r'",
   RB: "U R U R' U' M' U R U' r' U'",
   BL: "U2 R U R' U' M' U R U' r' U2",
   FL: "U' R U R' U' M' U R U' r' U",
-  D: "U M' U' R' U' R U M2' U' R' U M' R",
   nocorners: "R2 S2 L2 S2",
 };
 
-const corners = ["CORNER_START", "o", "s", "a", "d", "t", "p", "c", "h"];
+const corners = ["CORNER_START", "O", "H", "S", "A", "V", "P", "C", "T"];
 const cornerExtra = {
-  o: "(riented)",
-  s: "(une)",
-  a: "(ntisune)",
-  d: "(ouble-sune)",
-  t: "(riple-sune)",
-  p: "(i)",
-  c: "(hameleon)",
-  h: "(eadlights)",
+  O: "(riented)",
+  S: "(une)",
+  A: "(nti-sune)",
+  H: "",
+  V: "",
+  P: " (for pi)",
+  T: "",
+  C: "",
 };
-const edges = ["EDGE_START", "U", "FB", "RL", "FR", "RB", "BL", "FL", "D"];
+const edges = ["EDGE_START", "O", "U", "FB", "RL", "FR", "RB", "BL", "FL"];
 
 const canonicalizeIdx = [
   [
-    [1, 3],
-    [1, 2],
-  ],
-  [
-    [1, 5],
     [1, 4],
+    [1, 3],
   ],
   [
     [1, 6],
-    [1, 4],
+    [1, 5],
   ],
   [
     [1, 7],
+    [1, 5],
+  ],
+  [
+    [1, 8],
     [1, 4],
   ],
   [
-    [4, 8],
-    [4, 3],
+    [2, 4],
+    [2, 3],
   ],
   [
-    [4, 6],
-    [4, 4],
+    [2, 7],
+    [2, 5],
   ],
   [
-    [4, 7],
-    [4, 5],
+    [2, 8],
+    [2, 6],
   ],
 ];
 const canonicalize: Record<string, string> = {};
 for (const [[a, b], [c, d]] of canonicalizeIdx) {
-  canonicalize[corners[a] + edges[b]] = corners[c] + edges[d];
+  canonicalize["#" + corners[a] + edges[b]] = "#" + corners[c] + edges[d];
 }
+
+// https://stackoverflow.com/a/24471679
+var swapCase = function (letters) {
+  var newLetters = "";
+  for (var i = 0; i < letters.length; i++) {
+    if (letters[i] === letters[i].toLowerCase()) {
+      newLetters += letters[i].toUpperCase();
+    } else {
+      newLetters += letters[i].toLowerCase();
+    }
+  }
+  console.log(newLetters);
+  return newLetters;
+};
 
 const table = document.createElement("table");
 document.body.appendChild(table);
@@ -81,6 +94,9 @@ for (const corner of corners) {
     let alg: string[] = [];
     if (corner !== "CORNER_START") {
       alg.push(a[corner]);
+      if (edge !== "EDGE_START") {
+        name += "#";
+      }
       name += corner;
     }
     if (edge !== "EDGE_START") {
@@ -106,11 +122,11 @@ for (const corner of corners) {
     td.append(name);
     if (edge === "EDGE_START" && corner === "CORNER_START") {
       td.innerHTML =
-        "<span>OLL<br>Naming</span><span>Lucas<br>Garron</span><span>2020-08-08</span>";
+        "<span>#OLL<br>Naming v0.2</span><span>Lucas<br>Garron</span><span>2020-08-09</span>";
     }
     console.log(canonicalize, name);
     if (name in canonicalize) {
-      td.innerHTML = `same as<br>${canonicalize[name]}`;
+      td.innerHTML = `same as<br>${canonicalize[name]}<br><br> (${name})`;
     }
     tr.appendChild(td);
   }
