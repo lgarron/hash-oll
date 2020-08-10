@@ -4,14 +4,14 @@ const a = {
   S: "R U2' R' U' R U' R'",
   A: "R U R' U R U2 R'",
   H: "U R U2' R' U' R U R' U' R U' R' U'",
-  V: "R U2' R' U' R U R' U' R U R' U' R U' R'",
+  L: "U' R U2' R' U' R U R' U' R U R' U' R U' R' U",
   P: "B U2 B2 U' B2 U' B2 U2' B",
   T: "U2 L' U2' L U L' U L R U2 R' U' R U' R' U' U2",
-  C: "U R U R' U R U2' R' L' U' L U' L' U2 L U' U'",
+  U: "U U R U R' U R U2' R' L' U' L U' L' U2 L U' U' U'",
   O: "",
   noedge: "M2 S2",
   nocenter: "M' E2 M",
-  U: "U M' U' R' U' R U M2' U' R' U M' R",
+  X: "U M' U' R' U' R U M2' U' R' U M' R",
   FB: "r U R' U' M U R U' R'",
   RL: "U' r U R' U' M U R U' R' U",
   FR: "R U R' U' M' U R U' r'",
@@ -21,18 +21,18 @@ const a = {
   nocorners: "R2 S2 L2 S2",
 };
 
-const corners = ["CORNER_START", "O", "H", "S", "A", "V", "P", "C", "T"];
+const corners = ["CORNER_START", "O", "H", "S", "A", "L", "P", "U", "T"];
 const cornerExtra = {
   O: "(riented)",
   S: "(une)",
   A: "(nti-Sune)",
   H: "",
-  V: "",
+  L: "",
   P: " (for pi)",
   T: "",
-  C: "",
+  U: "",
 };
-const edges = ["EDGE_START", "O", "U", "FB", "RL", "FR", "RB", "BL", "FL"];
+const edges = ["EDGE_START", "O", "X", "FB", "RL", "FR", "RB", "BL", "FL"];
 
 const canonicalizeIdx = [
   [
