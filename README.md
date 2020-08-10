@@ -18,5 +18,6 @@ Caveats:
 
 - Most OLLs have two synonyms. This means that people and software must be aware of the alternatives when indexing `#OLL` cases.
 - One CO name (S) matches an existing move name. This means that most of the corresponding `#OLL` cases consist entirely of valid moves, if not written in hash form.
+- `#PBL` conficts with a hashtag for a common [2x2x2 step](https://www.speedsolving.com/wiki/index.php/PBL).
 
 <img src="screencap/Hash OLL Naming.png">
