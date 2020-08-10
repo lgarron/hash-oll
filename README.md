@@ -12,7 +12,7 @@ Benefits:
   - All letters.
   - "O" for "oriented", reminiscent of 0 (zero, i.e. "nothing to orient").
   - Corner orientation letters based on shape.
-  - Edge orientation based on the sides with edges that need to be solved.
+  - Edge orientation based on the sides with edges that need to be solved. (The table here uses U side edge order matching the Reid spec — F, R, L, B — used by ACube and other software.)
 
 Caveats:
 
