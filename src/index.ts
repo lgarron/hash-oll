@@ -1,36 +1,37 @@
 import { cubeSVG, Face } from "sr-visualizer";
 
 const a = {
-  S: "R U2' R' U' R U' R'",
-  A: "R U R' U R U2 R'",
-  H: "U R U2' R' U' R U R' U' R U' R' U'",
-  V: "R U2' R' U' R U R' U' R U R' U' R U' R'",
-  P: "B U2 B2 U' B2 U' B2 U2' B",
-  T: "U2 L' U2' L U L' U L R U2 R' U' R U' R' U' U2",
-  C: "U R U R' U R U2' R' L' U' L U' L' U2 L U' U'",
-  O: "",
+  cS: "R U2' R' U' R U' R'",
+  cA: "R U R' U R U2 R'",
+  cH: "U R U2' R' U' R U R' U' R U' R' U'",
+  cL: "U' R U2' R' U' R U R' U' R U R' U' R U' R' U",
+  cP: "B U2 B2 U' B2 U' B2 U2' B",
+  cT: "U2 L' U2' L U L' U L R U2 R' U' R U' R' U' U2",
+  cU: "U U R U R' U R U2' R' L' U' L U' L' U2 L U' U' U'",
+  cO: "",
   noedge: "M2 S2",
   nocenter: "M' E2 M",
-  U: "U M' U' R' U' R U M2' U' R' U M' R",
-  FB: "r U R' U' M U R U' R'",
-  RL: "U' r U R' U' M U R U' R' U",
-  FR: "R U R' U' M' U R U' r'",
-  RB: "U R U R' U' M' U R U' r' U'",
-  BL: "U2 R U R' U' M' U R U' r' U2",
-  FL: "U' R U R' U' M' U R U' r' U",
+  eO: "",
+  eU: "U M' U' R' U' R U M2' U' R' U M' R",
+  eFB: "r U R' U' M U R U' R'",
+  eRL: "U' r U R' U' M U R U' R' U",
+  eFR: "R U R' U' M' U R U' r'",
+  eRB: "U R U R' U' M' U R U' r' U'",
+  eBL: "U2 R U R' U' M' U R U' r' U2",
+  eFL: "U' R U R' U' M' U R U' r' U",
   nocorners: "R2 S2 L2 S2",
 };
 
-const corners = ["CORNER_START", "O", "H", "S", "A", "V", "P", "C", "T"];
+const corners = ["CORNER_START", "O", "H", "S", "A", "L", "P", "U", "T"];
 const cornerExtra = {
   O: "(riented)",
   S: "(une)",
   A: "(nti-Sune)",
   H: "",
-  V: "",
+  L: "",
   P: " (for pi)",
   T: "",
-  C: "",
+  U: "",
 };
 const edges = ["EDGE_START", "O", "U", "FB", "RL", "FR", "RB", "BL", "FL"];
 
@@ -90,14 +91,14 @@ for (const corner of corners) {
     let alg: string[] = [];
     let altName = "";
     if (corner !== "CORNER_START") {
-      alg.push(a[corner]);
+      alg.push(a["c" + corner]);
       if (edge !== "EDGE_START") {
         name += "#";
       }
       name += corner;
     }
     if (edge !== "EDGE_START") {
-      alg.push(a[edge]);
+      alg.push(a["e" + edge]);
       if (edge.length === 2) {
         altName = name + edge[1] + edge[0];
       }
