@@ -1,4 +1,4 @@
-import { cubeSVG, Face } from "sr-visualizer";
+import { cubeSVG, Face, Arrow } from "sr-visualizer";
 
 const a = {
   cS: "R U2' R' U' R U' R'",
@@ -34,6 +34,52 @@ const cornerExtra = {
   U: "",
 };
 const edges = ["EDGE_START", "O", "D", "FB", "RL", "FR", "RB", "BL", "FL"];
+
+const yellow = "rgb(255, 255, 0)";
+const dim = "rgba(255, 255, 0, 0.33)";
+const dark = "rgba(108, 108, 0)";
+function arr(a, b, c, d, color: string = yellow, scale: number = 10): Arrow {
+  return {
+    s1: { face: a, n: b },
+    s2: { face: c, n: d },
+    s3: { face: a, n: b },
+    influence: 10,
+    color,
+    scale,
+  };
+}
+
+const arrows = {
+  O: [],
+  S: [
+    // arr(0, 8, 0, 5, false, 10),
+    // arr(0, 2, 0, 1, false, 10),
+    // arr(0, 0, 0, 3, false, 10),
+  ],
+  A: [],
+  L: [arr(0, 0, 0, 3), arr(0, 8, 0, 7)],
+  P: [arr(0, 0, 0, 1), arr(0, 2, 0, 1), arr(0, 6, 0, 3), arr(0, 8, 0, 5)],
+  T: [
+    arr(0, 4, 0, 1, dark, 10),
+    arr(0, 4, 0, 7, dark, 10),
+    arr(0, 0, 0, 1),
+    arr(0, 2, 0, 1),
+  ],
+  U: [
+    arr(0, 0, 0, 3),
+    arr(0, 2, 0, 5),
+    arr(0, 6, 0, 8, dim, 10),
+    arr(0, 8, 0, 6, dim, 10),
+  ],
+  H: [
+    arr(0, 4, 0, 3, dark),
+    arr(0, 4, 0, 5, dark),
+    arr(0, 0, 0, 3, yellow, 5),
+    arr(0, 6, 0, 3, yellow, 5),
+    arr(0, 2, 0, 5, yellow, 5),
+    arr(0, 8, 0, 5, yellow, 5),
+  ],
+};
 
 const canonicalizeIdx = [
   [
@@ -118,6 +164,10 @@ for (const corner of corners) {
       width: 60, // width/height of the svg
       height: 60,
       colorScheme: { 0: "yellow" },
+      arrows:
+        edge === "EDGE_START" && corner !== "CORNER_START"
+          ? arrows[corner]
+          : [],
     });
     td.append(document.createElement("br"));
     td.append(name);
@@ -129,7 +179,7 @@ for (const corner of corners) {
 
     if (edge === "EDGE_START" && corner === "CORNER_START") {
       td.innerHTML =
-        "<span>#OLL<br>Naming v0.2</span><span>Lucas<br>Garron</span><span>2020-08-09</span>";
+        "<span>#OLL<br>Naming v0.3</span><span>Lucas<br>Garron</span><span>2020-08-09</span>";
     }
     console.log(canonicalize, name);
     if (name in canonicalize) {
