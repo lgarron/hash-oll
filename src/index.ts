@@ -12,7 +12,7 @@ const a = {
   noedge: "M2 S2",
   nocenter: "M' E2 M",
   eO: "",
-  eU: "U M' U' R' U' R U M2' U' R' U M' R",
+  eD: "U M' U' R' U' R U M2' U' R' U M' R",
   eFB: "r U R' U' M U R U' R'",
   eRL: "U' r U R' U' M U R U' R' U",
   eFR: "R U R' U' M' U R U' r'",
@@ -33,7 +33,7 @@ const cornerExtra = {
   T: "",
   U: "",
 };
-const edges = ["EDGE_START", "O", "U", "FB", "RL", "FR", "RB", "BL", "FL"];
+const edges = ["EDGE_START", "O", "D", "FB", "RL", "FR", "RB", "BL", "FL"];
 
 const canonicalizeIdx = [
   [
