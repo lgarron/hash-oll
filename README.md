@@ -13,6 +13,7 @@ Benefits:
   - "O" for "oriented", reminiscent of 0 (zero, i.e. "nothing to orient").
   - Corner orientation letters based on shape, using de facto community names.
   - Edge orientation based on the sides with edges that need to be solved. (The table here uses U side edge order matching the Reid spec — F, R, L, B — used by ACube and other software.)
+- The solved case is "OO". 😎 (Cuber slang for "objectively optimal", often tongue-in-cheeck.)
 
 Caveats:
 
