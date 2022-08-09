@@ -1,4 +1,4 @@
-import { cubeSVG, Face, Arrow } from "sr-visualizer";
+import { Arrow, cubeSVG } from "sr-visualizer";
 
 const algHelpers = {
   cS: "R U2' R' U' R U' R'",
