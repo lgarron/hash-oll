@@ -1,6 +1,6 @@
 import { cubeSVG, Face, Arrow } from "sr-visualizer";
 
-const a = {
+const algHelpers = {
   cS: "R U2' R' U' R U' R'",
   cA: "R U R' U R U2 R'",
   cH: "U R U2' R' U' R U R' U' R U' R' U'",
@@ -96,7 +96,7 @@ const canonicalizeIdx = [
   ],
   [
     [1, 8],
-    [1, 4],
+    [1, 5],
   ],
   [
     [2, 7],
@@ -137,26 +137,26 @@ for (const corner of corners) {
     let alg: string[] = [];
     let altName = "";
     if (corner !== "CORNER_START") {
-      alg.push(a["c" + corner]);
+      alg.push(algHelpers["c" + corner]);
       if (edge !== "EDGE_START") {
         name += "#";
       }
       name += corner;
     }
     if (edge !== "EDGE_START") {
-      alg.push(a["e" + edge]);
+      alg.push(algHelpers["e" + edge]);
       if (edge.length === 2) {
         altName = name + edge[1] + edge[0];
       }
       name += edge;
     }
     if (edge === "EDGE_START") {
-      alg.push(a.nocenter);
-      alg.push(a.noedge);
+      alg.push(algHelpers.nocenter);
+      alg.push(algHelpers.noedge);
       name += cornerExtra[corner];
     }
     if (corner === "CORNER_START") {
-      alg.push(a.nocorners);
+      alg.push(algHelpers.nocorners);
     }
     cubeSVG(td, {
       algorithm: alg.join(" "),
